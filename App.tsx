@@ -1,20 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import KakaoLogin from './src/screens/login';
+import kakao from './src/screens/MainPage';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working!!!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+export default function App(){
+  
+ return (<KakaoLogin/>)
+ 
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
