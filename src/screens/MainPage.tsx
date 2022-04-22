@@ -3,9 +3,7 @@ import { Image, StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'r
 import { StackNavigationOptions } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import KakaoLogin from './login';
-import axios from "axios";
-import { getHostUrl, post } from '../server';
+import KakaoLogin from './src/screens/login';
 
 
 const navigation = useNavigation()
@@ -14,7 +12,7 @@ const kakao = ({navigation}: any) => {
   return (
     <view style={styles.container}>
       <Text style={styles.title}>Soup</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("Kakaologin")}>
+      <TouchableOpacity onPress={() => navigation.navigate("KakaoLogin")}>
           <Image style={styles.image} source={require('../assets/certi_kakao_login.png')} resizeMode={'contain'} />
       </TouchableOpacity>)
     </view>
@@ -33,7 +31,6 @@ const styles = StyleSheet.create({
       marginTop: '80%'
   },
 
-   
     title: {
       fontWeight: '600',
       fontSize: 48,
