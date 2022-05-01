@@ -1,29 +1,25 @@
-import instance from '../../config/axios';
-import Type from '../../api/domain/type';
-import { Token } from '../../store/repository/TokenRepository';
-import User from '../../api/domain/user';
+import { KAKAO_REDIRECT_URL } from "..";
+import requester from "../../config/axios";
 
-interface KakaoLoginApiProps {
-  code: string;
+export function getAccessToken(code: string) {
+  return requester
+    .post(
+      "https://kauth.kakao.com/oauth/token",
+      new URLSearchParams({
+        code: code,
+        grant_type: "authorization_code",
+        client_id: "9673bc175438cccc0e91d5440e624b4a",
+        redirect_uri: KAKAO_REDIRECT_URL,
+        client_secret: "t6fQLKlEkWHn6ZD6T7APyfj0nGGZgPIC",
+      }).toString(),
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+        },
+      }
+    )
+    .then((res) => {
+      return res.data.access_token;
+    })
+    .catch((err) => console.log(err.response.data));
 }
-
-interface KakaoLoginApiData {
-  isUser: boolean;
-  oauth: {
-    clientId: string;
-    Type: Type;
-    profileImageUrl: string;
-  };
-  token?: Token;
-  user?: User;
-}
-
-const kakaoLoginApi = async (
-  props: KakaoLoginApiProps
-): Promise<KakaoLoginApiData> => {
-  return await instance.post(`/api/v1/auth/login`, props).then((res) => {
-    return res.data;
-  });
-};
-
-export default kakaoLoginApi;

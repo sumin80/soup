@@ -1,18 +1,10 @@
-import { atom, selector } from 'recoil';
+import { atom } from "recoil";
 
-import User from '../../api/domain/user';
+import User from "../../api/domain/user";
 
-const meAtom = atom<User>({
+const meAtom = atom<User | null>({
   key: `me-atom`,
   default: null,
 });
 
-const meSelector = selector<User>({
-  key: `me-selector`,
-  get: ({ get }) => get(meAtom),
-  set: ({ set }, newValue) => {
-    set(meAtom, newValue);
-  },
-});
-
-export default meSelector;
+export default meAtom;

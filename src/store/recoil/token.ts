@@ -1,6 +1,6 @@
-import { atom, selector } from 'recoil';
-import TokenRepository, { Token } from '../repository/TokenRepository';
-import RepositoryKeys from '../../constant/repository';
+import { atom, selector } from "recoil";
+import TokenRepository, { Token } from "../repository/TokenRepository";
+import RepositoryKeys from "../../constant/repository";
 
 const tokenAtom = atom<Token>({
   key: `${RepositoryKeys.TOKEN}-atom`,

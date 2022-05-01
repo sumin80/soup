@@ -1,5 +1,5 @@
-import Repository from './repository';
-import RepositoryKeys from '../../constant/repository';
+import Repository from "./repository";
+import RepositoryKeys from "../../constant/repository";
 
 export interface Token {
   accessToken: string;
