@@ -1,5 +1,9 @@
-import { KAKAO_REDIRECT_URL } from "..";
-import requester from "../../config/axios";
+import {
+  KAKAO_CLIENT_ID,
+  KAKAO_CLIENT_SECRET,
+  KAKAO_REDIRECT_URL,
+} from "../..";
+import requester from "../../../config/axios";
 
 export function getAccessToken(code: string) {
   return requester
@@ -8,9 +12,9 @@ export function getAccessToken(code: string) {
       new URLSearchParams({
         code: code,
         grant_type: "authorization_code",
-        client_id: "9673bc175438cccc0e91d5440e624b4a",
+        client_id: KAKAO_CLIENT_ID,
         redirect_uri: KAKAO_REDIRECT_URL,
-        client_secret: "t6fQLKlEkWHn6ZD6T7APyfj0nGGZgPIC",
+        client_secret: KAKAO_CLIENT_SECRET,
       }).toString(),
       {
         headers: {

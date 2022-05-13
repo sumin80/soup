@@ -1,12 +1,12 @@
 import Sex from "../../api/domain/sex";
-import Type from "../../api/domain/type";
+import AuthType from "../../api/domain/type";
 
 interface User {
-  Clientid: string;
+  clientId: string;
   name: string;
-  profileImageUrl: string;
+  profileImageUrl?: string;
   sex: Sex;
-  Type: Type;
+  Type: AuthType;
 }
 
 export default User;

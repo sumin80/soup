@@ -11,9 +11,6 @@ const reissue = async ({
   url,
   refreshToken,
 }: ReissueApiProps): Promise<Token> => {
-  // const url = a.url
-  // const refreshToken = a.refreshToken;
-
   return await requester
     .post("/api/v1/auth/reissue", { refreshToken })
     .then((res) => {

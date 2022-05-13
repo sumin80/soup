@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
+import * as React from "react";
+import { View, Text, SafeAreaView } from "react-native";
 
 const JoinList = () => {
   return (
@@ -8,15 +8,17 @@ const JoinList = () => {
         <View
           style={{
             flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <Text
             style={{
               fontSize: 25,
-              textAlign: 'center',
+              textAlign: "center",
               marginBottom: 16,
-            }}>
+            }}
+          >
             JoinList Screen
           </Text>
         </View>

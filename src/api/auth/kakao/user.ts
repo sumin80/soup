@@ -1,4 +1,4 @@
-import requester from "../../config/axios";
+import requester from "../../../config/axios";
 
 export function userInfo(accessToken: string) {
   return requester

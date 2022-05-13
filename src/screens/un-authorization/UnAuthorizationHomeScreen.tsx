@@ -14,7 +14,7 @@ const UnAuthorizationHomeScreen: React.VFC = () => {
       <View>
         <Image
           style={styles.image}
-          source={require("../assets/kakao_button.png")}
+          source={require("../../assets/kakao_button.png")}
           height={360}
           resizeMode={"contain"}
         />

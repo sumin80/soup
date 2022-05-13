@@ -4,16 +4,17 @@ import { WebView, WebViewMessageEvent } from "react-native-webview";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { StackNavigationOptions } from "@react-navigation/stack";
 import { KAKAO_API_URL, KAKAO_REDIRECT_URL } from "../../api/index";
-import { getAccessToken } from "../../api/auth/kakao";
+import { getAccessToken } from "../../api/auth/kakao/kakao";
 import { Token } from "../../store/repository/TokenRepository";
 import { UnAuthorizationNavigations } from "../../constant/navigation";
-import { UnAuthorizationStackParamList } from "../../stack/UnAuthorizationStackNavigator";
+import { UnAuthorizationStackParamList } from "../../navigations/UnAuthorizationStackNavigator";
 import { useRecoilState } from "recoil";
 import tokenSelector from "../../store/recoil/token";
-import { userInfo } from "../../api/auth/user";
+import { userInfo } from "../../api/auth/kakao/user";
 import { signUp } from "../../api/auth/signup";
 import { signIn } from "../../api/auth/signin";
 import { IsValidClient } from "../../api/auth/valid";
+import AuthType from "../../api/domain/type";
 
 export const KakaoLoginScreenOptions: StackNavigationOptions = {};
 
@@ -29,18 +30,23 @@ function capitalize(str: string) {
 }
 
 function KakaoLogin() {
+
   const navigation = useNavigation<navigationProp>();
   const [token, setToken] = useRecoilState(tokenSelector);
+
   const handleOnMessage = useCallback((e: WebViewMessageEvent) => {
     const url = e.nativeEvent.url;
     if (url.includes(`${KAKAO_REDIRECT_URL}?code=`)) {
       const code = url.replace(`${KAKAO_REDIRECT_URL}?code=`, "");
       getAccessToken(code).then((accessToken) => {
+        console.log(accessToken)
         userInfo(accessToken).then((result) => {
-          IsValidClient(`${result.id}`, "Kakao").then((res) => {
+          IsValidClient(`${result.id}`, AuthType.KAKAO).then((res) => {
             if (res == true) {
-              signIn(`${result.id}`, "Kakao").then((res) => {
+              signIn(`${result.id}`, AuthType.KAKAO).then((res) => {
                 setToken(res);
+                console.log(res)
+                navigation.reset({ index: 0, routes: [{ name: "Home" }] });
               });
             } else
               signUp(
@@ -48,10 +54,11 @@ function KakaoLogin() {
                 result.kakao_account.profile.nickname,
                 result.kakao_account.profile.profile_image_url,
                 capitalize(result.kakao_account.gender),
-                "Kakao",
+                AuthType.KAKAO,
                 accessToken
               ).then((res) => {
                 setToken(res);
+                navigation.reset({ index: 0, routes: [{ name: "Home" }] });
               });
           });
         });
@@ -59,12 +66,12 @@ function KakaoLogin() {
     }
   }, []);
 
+
   return (
     <View style={styles.container}>
       <WebView
         originWhitelist={["*"]}
         scalesPageToFit={false}
-        style={{ marginTop: 30 }}
         source={{ uri: KAKAO_API_URL }}
         injectedJavaScript={runFirst}
         javaScriptEnabled={true}
