@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 import { View, Text, SafeAreaView } from "react-native";
 
-const JoinList = () => {
+export default function JoinList() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, padding: 16 }}>
@@ -26,4 +26,4 @@ const JoinList = () => {
     </SafeAreaView>
   );
 };
-export default JoinList;
+

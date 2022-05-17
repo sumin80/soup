@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 
-const AlarmScreen = () => {
+export default function AlarmScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, padding: 16 }}>
@@ -24,4 +24,4 @@ const AlarmScreen = () => {
     </SafeAreaView>
   );
 };
-export default AlarmScreen;
+

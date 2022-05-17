@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 
-const AllList = () => {
+export default function AllList(){
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, padding: 16 }}>
@@ -11,6 +11,7 @@ const AllList = () => {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
+            
           <Text
             style={{
               fontSize: 25,
@@ -18,10 +19,11 @@ const AllList = () => {
               marginBottom: 16,
             }}>
             AllList Screen
+           
           </Text>
         </View>
       </View>
     </SafeAreaView>
   );
 };
-export default AllList;
+

@@ -1,5 +1,5 @@
-enum Type {
-  KAKAO = 'KAKAO',
+enum AuthType {
+  KAKAO = 'Kakao',
 }
 
-export default Type;
+export default AuthType;

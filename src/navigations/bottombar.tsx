@@ -4,12 +4,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Entypo, MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
-
-import HomeScreen from "../screens/HomeScreen";
-import { ProfileScreen } from "../screens/ProfileScreen";
-import AlarmScreen from "../screens/AlarmScreen";
-import JoinList from "../screens/JoinList";
-import AllList from "../screens/AllList";
+import HomeScreen from "../screens/MainScreen/HomeScreen";
+import { ProfileScreen } from "../screens/MainScreen/ProfileScreen";
+import AlarmScreen from "../screens/MainScreen/AlarmScreen";
+import JoinList from "../screens/MainScreen/JoinList";
+import AllList from "../screens/MainScreen/AllList";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

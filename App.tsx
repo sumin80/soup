@@ -1,11 +1,9 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
-import { RecoilRoot, useRecoilState } from "recoil";
-import MainNavigator from "./src/navigations/mainNavigator";
+import { RecoilRoot} from "recoil";
 import StackNavigator from "./src/navigations/stackNavigator";
 import { useFonts } from "expo-font";
-import tokenSelector from "./src/store/recoil/token";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -19,7 +17,6 @@ export default function App() {
     <RecoilRoot>
       <NavigationContainer>
         <StatusBar style="auto" />
-        
         <StackNavigator />
       </NavigationContainer>
     </RecoilRoot>

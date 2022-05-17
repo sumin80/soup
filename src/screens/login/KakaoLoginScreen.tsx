@@ -5,7 +5,6 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { StackNavigationOptions } from "@react-navigation/stack";
 import { KAKAO_API_URL, KAKAO_REDIRECT_URL } from "../../api/index";
 import { getAccessToken } from "../../api/auth/kakao/kakao";
-import { Token } from "../../store/repository/TokenRepository";
 import { UnAuthorizationNavigations } from "../../constant/navigation";
 import { UnAuthorizationStackParamList } from "../../navigations/UnAuthorizationStackNavigator";
 import { useRecoilState } from "recoil";
@@ -29,7 +28,8 @@ function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function KakaoLogin() {
+
+export default function KakaoLogin() {
 
   const navigation = useNavigation<navigationProp>();
   const [token, setToken] = useRecoilState(tokenSelector);
@@ -39,7 +39,6 @@ function KakaoLogin() {
     if (url.includes(`${KAKAO_REDIRECT_URL}?code=`)) {
       const code = url.replace(`${KAKAO_REDIRECT_URL}?code=`, "");
       getAccessToken(code).then((accessToken) => {
-        console.log(accessToken)
         userInfo(accessToken).then((result) => {
           IsValidClient(`${result.id}`, AuthType.KAKAO).then((res) => {
             if (res == true) {
@@ -52,10 +51,10 @@ function KakaoLogin() {
               signUp(
                 `${result.id}`,
                 result.kakao_account.profile.nickname,
-                result.kakao_account.profile.profile_image_url,
                 capitalize(result.kakao_account.gender),
                 AuthType.KAKAO,
-                accessToken
+                accessToken,
+                result.kakao_account.profile.profile_image_url,
               ).then((res) => {
                 setToken(res);
                 navigation.reset({ index: 0, routes: [{ name: "Home" }] });
@@ -87,4 +86,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KakaoLogin;

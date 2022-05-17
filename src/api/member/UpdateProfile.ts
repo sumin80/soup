@@ -6,12 +6,12 @@ export function UpdateProfile(
   accessToken: string
 ) {
   return requester
-    .post(
-      "/api/v1/member/profile",
-      { profileImage, bio },
+    .post("/api/v1/member/profile",
+      {profileImage, bio},
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
+          //"Content-Type": "multipart/form-data",
         },
       }
     )
